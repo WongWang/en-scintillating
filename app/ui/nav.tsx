@@ -48,14 +48,14 @@ export default function NavBar() {
   
   return (
     <nav className="bg-nord0 fixed w-full z-20 top-0 start-0 border-b border-gray-600">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-6 py-3">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-6 py-1 sm:py-3">
         <Link href="/" className="flex items-center space-x-1">
-          <img src="/logo.png" className="h-9" alt="En-Scintillating Logo"/>
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-nord4">En-Scintillating</span>
+          <img src="/logo.png" className="h-7 sm:h-9" alt="En-Scintillating Logo"/>
+          <span className="self-center text-lg sm:text-2xl font-semibold whitespace-nowrap text-nord4">En-Scintillating</span>
         </Link>
         <div className="flex lg:order-2 space-x-3">
-          <a href="https://b.bnds.one/" className="text-nord0 bg-nord6 hover:bg-nord4 font-medium rounded-lg text-sm px-4 py-2 self-center">Get started</a>
-          <a href="https://b.bnds.one/" className="flex items-center">
+          <a href="https://b.bnds.one/" className="text-nord0 bg-nord6 hover:bg-nord4 font-medium rounded-lg text-sm px-4 py-2 self-center hidden sm:block">Get started</a>
+          <a href="https://b.bnds.one/" className="items-center hidden lg:block">
             <img src="/GitHub_logo.png" className="h-9" alt="GitHub Logo"/>
           </a>
           <button type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-nord4 rounded-lg lg:hidden cursor-pointer" onClick={toggleMenu}>
@@ -65,7 +65,7 @@ export default function NavBar() {
           </button>
         </div>
         <div className={(isMenuOpen ? '' : 'hidden ') + "items-center justify-between w-full lg:flex lg:w-auto lg:order-1"} id="navbar-sticky">
-          <ul className="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-nord0 lg:space-x-8 lg:flex-row lg:mt-0 lg:border-0">
+          <ul className="flex flex-col p-4 lg:p-0 my-4 lg:my-0 font-medium border border-gray-600 rounded-lg bg-nord0 lg:space-x-8 lg:flex-row lg:mt-0 lg:border-0">
             <NavLinks />
           </ul>
         </div>
