@@ -47,18 +47,18 @@ export default function NavBar() {
   };
   
   return (
-    <nav className="bg-nord0 fixed w-full z-20 top-0 start-0 border-b border-gray-600">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-6 py-1 sm:py-3">
+    <nav className="bg-nord0 sticky w-full z-20 top-0 start-0 border-b border-gray-600">
+      <div className="flex flex-wrap items-center justify-between mx-auto px-6 py-1 sm:py-3">
         <Link href="/" className="flex items-center space-x-1">
           <img src="/logo.png" className="h-7 sm:h-9" alt="En-Scintillating Logo"/>
-          <span className="self-center text-lg sm:text-2xl font-semibold whitespace-nowrap text-nord4">En-Scintillating</span>
+          <span className="self-center text-lg sm:text-2xl font-semibold whitespace-nowrap text-nord6">En-Scintillating</span>
         </Link>
         <div className="flex lg:order-2 space-x-3">
-          <a href="https://b.bnds.one/" className="text-nord0 bg-nord6 hover:bg-nord4 font-medium rounded-lg text-sm px-4 py-2 self-center hidden sm:block">Get started</a>
+          <Link href="/home" className="text-nord0 bg-nord6 hover:bg-nord4 font-medium rounded-lg text-sm px-4 py-2 self-center hidden sm:block">Get started</Link>
           <a href="https://b.bnds.one/" className="items-center hidden lg:block">
             <img src="/GitHub_logo.png" className="h-9" alt="GitHub Logo"/>
           </a>
-          <button type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-nord4 rounded-lg lg:hidden cursor-pointer" onClick={toggleMenu}>
+          <button type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-nord6 hover:text-nord4 rounded-lg lg:hidden cursor-pointer" onClick={toggleMenu}>
             <svg className="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 17 14">
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={(isMenuOpen ? "M3 3 L13 13 M13 3 L 3 13" : "M1 1h15M1 7h15M1 13h15")}/>
             </svg>

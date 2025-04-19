@@ -12,6 +12,7 @@ const plans = [
     pricePerTimeUnit: '$0',
     timeUnit: 'month',
     buttonPrompt: 'Get Started',
+    buttonHref: '/home',
     features: [
       'Fix mistakes and write error-free',
       'Improve sentence flow and readability',
@@ -26,6 +27,7 @@ const plans = [
     pricePerTimeUnit: '$0',
     timeUnit: 'month',
     buttonPrompt: 'Coming Soon',
+    buttonHref: '#',
     features: [
       'All features in free',
       'Precise corrections for your field',
@@ -41,6 +43,7 @@ const plans = [
     pricePerTimeUnit: '$0',
     timeUnit: 'month',
     buttonPrompt: 'Contact Sales',
+    buttonHref: '#',
     features: [
       'All features in pro',
       'Enforce company terminology and style guides',
@@ -54,24 +57,24 @@ const plans = [
 function PlanFeatures({ plan, isMiddle, showPrice }: { plan: typeof plans[0], isMiddle: boolean, showPrice: boolean}) {
   return (
     <div className={"flex flex-col" + (isMiddle ? ' pt-10' : '')}>
-      <div className="h-8 text-sm">{plan.users}</div>
-      <div className="h-10 text-3xl font-bold">{plan.planName}</div>
-      <div className="h-20 text-sm">{plan.description}</div>
-      { showPrice ? (
+      <div className="h-8 text-sm text-nord6">{plan.users}</div>
+      <div className="h-10 text-3xl font-bold text-nord6">{plan.planName}</div>
+      <div className="h-20 text-sm text-nord6">{plan.description}</div>
+      {showPrice ? (
           <div className="h-10 flex justify-start items-center gap-3">
-            <span className="text-3xl font-bold">{plan.pricePerTimeUnit}</span>
-            <span className="text-base font-bold">per {plan.timeUnit}</span>
+            <span className="text-3xl font-bold text-nord6">{plan.pricePerTimeUnit}</span>
+            <span className="text-base font-bold text-nord6">per {plan.timeUnit}</span>
           </div>
         ) : ( <div className="h-10"></div> )
       }
 
       <div className="h-20 flex items-center justify-center w-full self-center">
-        <Link href="#" className={isMiddle ? buttonStyleBright : buttonStyleDark}>{plan.buttonPrompt}</Link>
+        <Link href={plan.buttonHref} className={isMiddle ? buttonStyleBright : buttonStyleDark}>{plan.buttonPrompt}</Link>
       </div>
       <ul className="list-disc text-base">
         {plan.features.map((feature, index) => {
           return (
-            <li key={index} className="my-3">
+            <li key={index} className="my-3 text-nord6">
               {feature}
             </li>
           );
@@ -83,10 +86,10 @@ function PlanFeatures({ plan, isMiddle, showPrice }: { plan: typeof plans[0], is
 
 export default function Page() {
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 pb-20 gap-16 lg:p-20 font-[family-name:var(--font-geist-sans)] bg-nord0">
+    <div className="flex flex-col items-center min-h-screen bg-nord0">
       <NavBar />
-      <main className="text-5xl px-3 lg:px-10 py-20 max-w-7xl">
-        <h1 className="text-left sm:text-center font-semibold text-3xl sm:text-4xl lg:text-5xl">We are currently free for individual users!</h1>
+      <main className="flex flex-col items-center my-10 lg:my-18 mx-5 max-w-7xl">
+        <h1 className="text-left sm:text-center font-semibold text-3xl sm:text-4xl lg:text-5xl lg:leading-14 text-nord6">We are currently free for individual users!</h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 rounded-lg">
           <div className="flex flex-col border border-gray-600 rounded-lg lg:border-r-0 lg:rounded-r-none mt-10 lg:mt-30 p-10">
             <PlanFeatures plan={plans[1]} isMiddle={false} showPrice={false} />
