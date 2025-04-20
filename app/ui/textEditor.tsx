@@ -8,7 +8,11 @@ import {TextBold, TextItalic, H1, H2, ListTwo, ListNumbers, Undo, Redo, ClearFor
 import Placeholder from '@tiptap/extension-placeholder'
 import { analyzeWithDeepSeek } from '../lib/analyze';
 
-export default function TextEditor() {
+interface TextEditorProps {
+  setResponse: (response: string) => void; // 接收父组件传递的 setResponse 函数
+}
+
+export default function TextEditor({ setResponse }: TextEditorProps) {
   const MenuBar = () => {
     const { editor } = useCurrentEditor()
     if (!editor) {
@@ -22,7 +26,8 @@ export default function TextEditor() {
       setIsLoading(true);
       try {
         const response = await analyzeWithDeepSeek(editor);
-        console.log(response)
+        setResponse(response);
+        console.log(response);
       } catch (error) {
         console.error('Analysis failed:', error);
       } finally {

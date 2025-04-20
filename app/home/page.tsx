@@ -1,8 +1,13 @@
+"use client";
+
 import TextEditor from "@/app/ui/textEditor";
 import Link from 'next/link';
 import Suggestions from "../ui/suggessions";
+import { useState } from "react";
 
 export default function Page() {
+  const [response, setResponse] = useState<string>("");
+
   return (
     <div className="flex flex-row items-start min-h-screen gap-8 bg-nord0">
       <div className="basis-2/3 pl-8 sm:pl-20">
@@ -13,11 +18,11 @@ export default function Page() {
           <input type="text" placeholder="Untitled document" className="focus:outline-none hover:bg-nord1 focus:bg-nord1 p-3 text-2xl font-semibold rounded-lg" />
         </div>
         <div className="relative px-18 pt-8 min-h-[calc(100vh-5rem)] flex flex-row justify-center">
-          <TextEditor />
+          <TextEditor setResponse={setResponse} />
         </div>
       </div>
       <div className="basis-1/3">
-        <Suggestions />
+        <Suggestions response={response} />
       </div>    
     </div>
   );

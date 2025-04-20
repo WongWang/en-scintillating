@@ -14,7 +14,8 @@ function generatePrompt(text: string, grammarOnly: boolean, style: 'formal' | 'c
   3. 返回时只返回纯文本形式，且保留原文的 HTML 标签
   4. 返回时在每处修改位置用 ^^|original|^^|...|^^ 的形式给出修改前的原文
   5. 返回时在每处修改位置用 ^^|reason|^^|...|^^ 的形式给出修改的理由
-  6. 修改的理由总是使用最简洁且正式的描述
+  6. 返回时在每处修改位置用 ^^|revised|^^|...|^^ 的形式给出修改后替换原文的文本
+  7. 修改的理由总是使用最简洁且正式的描述
 
   原文：
   ${text}
@@ -23,10 +24,10 @@ function generatePrompt(text: string, grammarOnly: boolean, style: 'formal' | 'c
 
 export const analyzeWithDeepSeek = async (
   editor: Editor
-): Promise<string | null> => {
+): Promise<string> => {
   const originalText = editor.getHTML();
   if (originalText === "<p></p>") {
-    return null;
+    return "";
   }
   const content = generatePrompt(originalText, true, 'formal');
 
@@ -44,6 +45,6 @@ export const analyzeWithDeepSeek = async (
     return result;
   } catch (error) {
     console.error('Error:', error);
-    return null;
+    return "";
   }
 };
