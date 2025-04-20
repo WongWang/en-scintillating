@@ -1,22 +1,38 @@
 'use client'
 
+import { useState } from 'react';
 import StarterKit from '@tiptap/starter-kit'
 import { EditorProvider, useCurrentEditor } from '@tiptap/react'
 import CharacterCount from '@tiptap/extension-character-count'
-import {TextBold, TextItalic, H1, H2, ListTwo, ListNumbers, Undo, Redo, ClearFormat} from '@icon-park/react';
+import {TextBold, TextItalic, H1, H2, ListTwo, ListNumbers, Undo, Redo, ClearFormat, UploadOne} from '@icon-park/react';
 import Placeholder from '@tiptap/extension-placeholder'
+import { analyzeWithDeepSeek } from '../lib/analyze';
 
 export default function TextEditor() {
   const MenuBar = () => {
     const { editor } = useCurrentEditor()
-  
     if (!editor) {
       return null
     }
+
+    const [isLoading, setIsLoading] = useState(false);
+    const handleAnalyze = async () => {
+      if (!editor) return;
+  
+      setIsLoading(true);
+      try {
+        const response = await analyzeWithDeepSeek(editor);
+        console.log(response)
+      } catch (error) {
+        console.error('Analysis failed:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
   
     return (
       <div className="fixed w-180 bottom-0 py-3 bg-nord0 z-10000 flex flex-row justify-between items-center">
-        <div className="flex flex-row gap-0.5">
+        <div className="flex flex-row gap-0.5 justify-between items-center">
           <button
             onClick={() => editor.chain().focus().toggleBold().run()}
             disabled={
@@ -100,9 +116,13 @@ export default function TextEditor() {
             <ClearFormat theme="outline" size="18" fill='#eceff4'/>
           </button>
         </div>
-        <div>
-          <p>{editor.storage.characterCount.words()} words</p>
-        </div>
+        <p>{editor.storage.characterCount.words()} words</p>
+        <button
+          onClick={ handleAnalyze }
+          className="p-2 rounded-lg hover:bg-nord1 flex items-center gap-2"
+        >
+          <UploadOne theme="outline" size="22" fill="#eceff4"/> Analyze
+        </button>
       </div>
     )
   }
