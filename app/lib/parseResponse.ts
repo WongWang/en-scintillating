@@ -1,4 +1,4 @@
-interface ParsedSegment {
+export interface ParsedSegment {
   original: string;
   revised: string;
   reason: string;
