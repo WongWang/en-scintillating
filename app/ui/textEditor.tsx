@@ -9,7 +9,7 @@ import Placeholder from '@tiptap/extension-placeholder'
 import { analyzeWithDeepSeek } from '../lib/analyze';
 
 interface TextEditorProps {
-  setResponse: (response: string) => void; // 接收父组件传递的 setResponse 函数
+  setResponse: (response: string) => void;
 }
 
 export default function TextEditor({ setResponse }: TextEditorProps) {

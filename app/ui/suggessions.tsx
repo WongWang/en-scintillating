@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import EmptySuggession from "./emptySuggession";
-import { parseResponse, ParsedSegment } from "../lib/parseResponse"; // 假设 parseResponse 函数在另一个文件中
+import { parseResponse, ParsedSegment } from "../lib/parseResponse";
 import { Harm, ArrowRight } from "@icon-park/react";
 
 function Suggestions({ response }: { response: string }) {
   const [parsedResult, setParsedResult] = useState<ParsedSegment[] | null>(null);
 
-  // 监听 response 变化并解析
+  // Parse when response changed
   useEffect(() => {
     if (response) {
       const parsed = parseResponse(response);
@@ -16,7 +16,7 @@ function Suggestions({ response }: { response: string }) {
     }
   }, [response]);
 
-  // 渲染逻辑
+  // Render after response is parsed
   const renderContent = () => {
     if (parsedResult && parsedResult.length > 0) {
       return (
@@ -31,7 +31,7 @@ function Suggestions({ response }: { response: string }) {
                 <p className="font-bold">{segment.reason}</p>
               </div>
               <div className="pl-8 flex flex-row gap-3">
-                <s> {segment.original} </s>
+                <s className="whitespace-pre"> {segment.original} </s>
                 <ArrowRight theme="outline" size="22" fill="#eceff4"/>
                 <p> {segment.revised} </p>
               </div>
