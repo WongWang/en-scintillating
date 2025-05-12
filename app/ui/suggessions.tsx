@@ -27,8 +27,8 @@ function Suggestions({ response }: { response: string }) {
           {parsedResult.map((segment, index) => (
             <div key={index} className="mx-8 py-5 border-b border-nord1 flex flex-col gap-1">
               <div className="flex flex-row items-center gap-3">
-                <Harm theme="outline" size="22" fill="#bf616a"/>
-                <p className="font-bold">{segment.reason}</p>
+                <Harm theme="outline" size="22" fill={segment.reason.startsWith("Error: ") ? "#bf616a" : "#d08770"}/>
+                <p className="font-bold">{segment.reason.replace(/^(Error: |Warn: )/, "")}</p>
               </div>
               <div className="pl-8 flex flex-row gap-3">
                 <s className="whitespace-pre"> {segment.original} </s>

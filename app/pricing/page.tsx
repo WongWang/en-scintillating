@@ -1,3 +1,4 @@
+import Footer from "../ui/footer";
 import NavBar from "../ui/nav";
 import Link from 'next/link';
 
@@ -105,6 +106,7 @@ export default function Page() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
