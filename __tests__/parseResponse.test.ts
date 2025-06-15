@@ -1,4 +1,4 @@
-import { parseResponse, ParsedSegment } from '../app/lib/parseResponse'; // 更新为你实际文件路径
+import { parseResponse, ParsedSegment } from '../app/lib/parseResponse';
 
 describe('parseResponse', () => {
   it('should correctly parse the response and keep spaces', () => {
